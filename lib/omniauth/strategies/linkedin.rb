@@ -40,6 +40,18 @@ module OmniAuth
         full_host + script_name + callback_path
       end
 
+
+      # Introduced part
+      def callback_phase
+        # Introduce a 5-second delay before proceeding
+        sleep(10)
+
+        # Proceed with the normal callback phase
+        super
+      rescue OAuth2::Error, CallbackError => e
+        fail!(:invalid_credentials, e)
+      end
+
       alias :oauth2_access_token :access_token
 
       def access_token
