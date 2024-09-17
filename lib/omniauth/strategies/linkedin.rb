@@ -48,7 +48,7 @@ module OmniAuth
 
         # Proceed with the normal callback phase
         super
-      rescue OAuth2::Error, CallbackError => e
+      rescue ::OAuth2::Error, CallbackError => e
         fail!(:invalid_credentials, e)
       end
 
